@@ -1,0 +1,158 @@
+/* ===== CITIZEN DASHBOARD BUTTONS ===== */
+.dashboard-btn {
+  min-width: 260px;
+  max-width: 260px;
+  min-height: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+/* ===== DASHBOARD BUTTON ICONS ===== */
+.btn-icon-left {
+  display: flex;
+  align-items: center;
+  margin-right: 0.75rem;
+  height: 24px;
+  width: 24px;
+}
+
+.btn-icon-right {
+  display: flex;
+  align-items: center;
+  margin-left: 0.75rem;
+}
+
+.btn-primary {
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+/* ===== GLOBAL STYLES ===== */
+:root {
+  --primary-blue: #033EA1;
+  --primary-dark-blue: #022E78;
+  --text-gray: #64748b;
+  --light-gray: #f1f5f9;
+  --border-gray: #e2e8f0;
+  --shadow-sm: 0 0 20px rgba(0,0,0,0.1);
+  --shadow-md: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  --border-radius: 0.5rem;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.6;
+  color: #1a202c;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== BASE LAYOUT ===== */
+.container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  background: white;
+  min-height: 100vh;
+  box-shadow: var(--shadow-sm);
+}
+
+/* ===== RESPONSIVE CONTAINER ===== */
+@media (min-width: 480px) {
+  .container {
+    max-width: 95%;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 400px;
+  }
+}
+
+/* ===== BUTTON SYSTEM ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 600;
+  width: 100%;
+}
+
+.btn-primary {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  padding: 1rem;
+  background: var(--primary-blue);
+  border: 1px solid var(--primary-blue);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  color: #FFFFFF;
+  font-size: 1rem;
+  max-width: 100%;
+}
+
+@media (min-width: 480px) {
+  .btn-primary {
+    max-width: 300px;
+    padding: 1rem 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .btn-primary {
+    max-width: 200px;
+  }
+}
+
+/* ===== FORM STYLES ===== */
+.form-input {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  background: var(--light-gray);
+  color: var(--text-gray);
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+/* ===== HEADER & NAVIGATION ===== */
+.header {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 1px solid var(--border-gray);
+}
+
+/* ===== PROFILE SECTION ===== */
+.profile-picture {
+  width: 100%;
+  max-width: 120px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  background: white;
+  border: 3px solid var(--primary-blue);
+  margin: 0 auto;
+}
+
+/* ===== MEDIA QUERIES ===== */
+@media (min-width: 768px) {
+  .header {
+    padding: 1rem 1.5rem;
+  }
+  
+  .profile-picture {
+    max-width: 150px;
+  }
+}
