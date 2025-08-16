@@ -1,0 +1,119 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual Environment
+.env
+.venv/
+.venv1/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/launch.json
+.vscode/tasks.json
+.vscode/settings.json
+.vscode/*.json
+.idea/
+*.swp
+*.swo
+*~
+
+# VS Code specific
+.vscode/launch.json
+.vscode/tasks.json
+.vscode/c_cpp_properties.json
+.vscode/settings.json
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Auto-generated files
+*.auto.*
+*_auto_*
+*-auto-*
+
+# Firebase
+.firebaserc
+firebase-debug.log
+firebase-debug.*.log
+.firebase/
+
+# Uploads
+uploads/*
+!uploads/.gitkeep
+
+# Test files
+test_*.json
+*_test_*.py
+TEST_*.md
+test_*.py
+*test*.py
+comprehensive_test.py
+system_test.py
+analytics_analysis.py
+check_analytics.py
+inspect_analytics.py
+create_indexes.py
+migrate_database.py
+verify_structure_clean.py
+
+# Auto-created documentation
+*_SUMMARY.md
+*_COMPLETE.md
+*_REPORT.md
+INDEX_*.md
+ORGANIZATION_*.md
+COMPLETION_*.md
+EMAIL_*.md
+DELETION_*.md
+CLEANUP_*.md
+INTEGRATION_*.md
+PROJECT_*.md
+RECOVERY_*.md
+ANALYTICS_IMPLEMENTATION.md
+FINAL_TEST_RESULTS.md
+CORRECTED_INDEX_GUIDE.md
+MOCK_DATA_SUMMARY.md
+CODE_CLEANUP_SUMMARY.md

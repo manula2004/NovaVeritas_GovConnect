@@ -1,0 +1,122 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Citizens collection - users can read/write their own data
+    match /citizens/{nic} {
+      allow read, write: if request.auth != null && 
+        (request.auth.uid == resource.data.firebaseUid || 
+         request.auth.uid == request.resource.data.firebaseUid);
+    }
+    
+    // Passport records - users can read their own, staff can read/write
+    match /passports/{passportId} {
+      allow read: if request.auth != null && 
+        (request.auth.uid == resource.data.firebaseUid || 
+         exists(/databases/$(database)/documents/passportStaff/$(request.auth.uid)));
+      allow write: if request.auth != null && 
+        exists(/databases/$(database)/documents/passportStaff/$(request.auth.uid));
+    }
+    
+    // License records - users can read their own, staff can read/write  
+    match /licenses/{licenseId} {
+      allow read: if request.auth != null && 
+        (request.auth.uid == resource.data.firebaseUid || 
+         exists(/databases/$(database)/documents/rmvStaff/$(request.auth.uid)));
+      allow write: if request.auth != null && 
+        exists(/databases/$(database)/documents/rmvStaff/$(request.auth.uid));
+    }
+    
+    // Time slots - read only for authenticated users
+    match /medicalTimeSlots/{slotId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && 
+        exists(/databases/$(database)/documents/medicalStaff/$(request.auth.uid));
+    }
+    
+    match /passportTimeSlots/{slotId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && 
+        exists(/databases/$(database)/documents/passportStaff/$(request.auth.uid));
+    }
+    
+    match /licenseTimeSlots/{slotId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && 
+        exists(/databases/$(database)/documents/rmvStaff/$(request.auth.uid));
+    }
+    
+    // Appointments - users can read/write their own
+    match /medicalAppointments/{appointmentId} {
+      allow read, write: if request.auth != null && 
+        (request.auth.uid == resource.data.firebaseUid || 
+         request.auth.uid == request.resource.data.firebaseUid ||
+         exists(/databases/$(database)/documents/medicalStaff/$(request.auth.uid)));
+    }
+    
+    match /passportAppointments/{appointmentId} {
+      allow read, write: if request.auth != null && 
+        (request.auth.uid == resource.data.firebaseUid || 
+         request.auth.uid == request.resource.data.firebaseUid ||
+         exists(/databases/$(database)/documents/passportStaff/$(request.auth.uid)));
+    }
+    
+    match /licenseAppointments/{appointmentId} {
+      allow read, write: if request.auth != null && 
+        (request.auth.uid == resource.data.firebaseUid || 
+         request.auth.uid == request.resource.data.firebaseUid ||
+         exists(/databases/$(database)/documents/rmvStaff/$(request.auth.uid)));
+    }
+    
+    // Staff collections - read only for authenticated users, write for admins
+    match /medicalStaff/{staffId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && 
+        resource.data.role == 'admin';
+    }
+    
+    match /passportStaff/{staffId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && 
+        resource.data.role == 'admin';
+    }
+    
+    match /rmvStaff/{staffId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && 
+        resource.data.role == 'admin';
+    }
+    
+    // Complaints - users can read/write their own
+    match /complaints/{complaintId} {
+      allow read, write: if request.auth != null && 
+        (request.auth.uid == resource.data.firebaseUid || 
+         request.auth.uid == request.resource.data.firebaseUid);
+      allow read: if request.auth != null && 
+        (exists(/databases/$(database)/documents/medicalStaff/$(request.auth.uid)) ||
+         exists(/databases/$(database)/documents/passportStaff/$(request.auth.uid)) ||
+         exists(/databases/$(database)/documents/rmvStaff/$(request.auth.uid)));
+    }
+    
+    // Documents - users can read/write their own
+    match /documents/{documentId} {
+      allow read, write: if request.auth != null && 
+        request.auth.uid == resource.data.user_id;
+    }
+    
+    // Analytics events - users can write their own, staff can read all
+    match /analytics_events/{eventId} {
+      allow create: if request.auth != null && 
+        request.auth.uid == request.resource.data.firebaseUid;
+      allow read: if request.auth != null && 
+        (exists(/databases/$(database)/documents/medicalStaff/$(request.auth.uid)) ||
+         exists(/databases/$(database)/documents/passportStaff/$(request.auth.uid)) ||
+         exists(/databases/$(database)/documents/rmvStaff/$(request.auth.uid)));
+    }
+    
+    // Default deny all other access
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

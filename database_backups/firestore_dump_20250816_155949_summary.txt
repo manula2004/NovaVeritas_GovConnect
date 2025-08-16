@@ -1,0 +1,27 @@
+FIREBASE DATABASE DUMP SUMMARY
+========================================
+
+Dump Timestamp: 2025-08-16T15:59:46.546827
+Total Collections: 14
+Total Documents: 372
+Source: Firebase Firestore
+Project ID: nova-veritas
+
+COLLECTION DETAILS:
+--------------------
+citizens                      7 documents
+passports                     3 documents
+licenses                      3 documents
+passportAppointments          2 documents
+licenseAppointments           1 documents
+medicalAppointments           2 documents
+passportTimeSlots            85 documents
+licenseTimeSlots             85 documents
+medicalTimeSlots            170 documents
+passportStaff                 3 documents
+rmvStaff                      3 documents
+medicalStaff                  3 documents
+complaints                    3 documents
+analytics_events              2 documents
+
+Summary saved: database_backups\firestore_dump_20250816_155949_summary.txt
